@@ -21,7 +21,10 @@ const Contacts = () => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setContact({...contact, [e.target.name]: e.target.value})
 
-    console.log(contactList);
+const handleRemove = ( email: string) =>{
+    const newContactList = contactList.filter(c => c.email !== email )
+    setContactList(newContactList)
+}
     return (
         <div>
             <h1>Contact List</h1>
@@ -43,10 +46,10 @@ const Contacts = () => {
                 <button onClick={onClick}>Add</button>
             </div>
             {
-                contactList.map((con) => (<Contact key={con.name} name={con.name} email={con.email} /> ))
+                contactList.map((con) => (<Contact key={con.name} name={con.name} email={con.email} handleRemove={handleRemove} /> ))
             }
           
-           <ContactDemo name="someone 2" />
+           {/* <ContactDemo name="someone 2" /> */}
         </div>                                                                                                                                 
     );
 }; 
